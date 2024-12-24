@@ -1,62 +1,159 @@
-# ThreatForge Password Generator
+# PassSec: Password Security and Strength Analysis Tool
 
-## Introduction
+## Overview
 
-Welcome to the ThreatForge Password Generator! This simple Python script allows you to generate strong and secure passwords with varying levels of complexity. Additionally, it provides a password strength assessment to help you evaluate the robustness of your passwords.
+PassSec is a Java-based application designed to evaluate password strength and generate secure passwords. It offers users an intuitive interface to:
 
-## Table of Contents
+- Test the strength of their passwords based on various criteria.
+- Generate secure and robust passwords using predefined rules.
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Functions](#functions)
-    - [passGen()](#passgen)
-    - [passStrength(passw)](#passstrengthpassw)
-- [Examples](#examples)
-- [Contributing](#contributing)
-- [License](#license)
+Developed under the **ThreatForge** banner, PassSec emphasizes enhancing user password security.
 
-## Installation
+---
 
-To use the ThreatForge Password Generator, simply clone the repository or download the `password_generator.py` file.
+## Features
 
-```bash
-git clone https://github.com/ThreatForge/password-generator.git
-cd password-generator
+### 1. Password Strength Evaluation
+
+The application analyzes a password's strength based on:
+
+- Inclusion of special characters.
+- Use of uppercase letters.
+- Length and inclusion of numbers.
+
+### 2. Password Generation
+
+PassSec generates strong passwords using:
+
+- At least 2 special characters.
+- 4 numeric digits.
+- 3 uppercase letters.
+- Sufficient lowercase letters to meet a minimum length of 17 characters.
+
+### 3. Interactive CLI
+
+- Users can choose to evaluate a password or generate a new one.
+- Provides feedback on password quality and suggestions for improvement.
+
+---
+
+## File Structure
+
+### 1. `Main`
+
+The entry point of the application.
+
+- **Responsibilities**:
+  - Display a menu for user interaction.
+  - Handle user input to test password strength or generate a new password.
+  - Provide feedback on evaluated passwords and prompt users for further actions.
+
+### 2. `PassSec`
+
+Extends the `Pass` class to provide enhanced password functionality.
+
+- **Key Methods**:
+  - `verify()`: Evaluates the password strength and assigns a strength level.
+  - `regenPass()`: Generates a strong password based on predefined criteria.
+  - `howMany(String password)`: Counts uppercase letters, special characters, and numbers in a password.
+- **Strength Levels**:
+  - `bad`: Very weak.
+  - `good`: Acceptable but needs improvement.
+  - `great`: Strong password.
+  - `incredible`: Highly secure password.
+
+### 3. `Pass`
+
+Base class for password-related functionality.
+
+- **Responsibilities**:
+  - Handle password storage and retrieval.
+  - Provide utility methods such as `getLength()` and `toString()`.
+  - Support cloning and equality checks.
+
+---
+
+## Usage
+
+### Running the Application
+
+1. Compile the Java files:
+
+    ```bash
+    javac Main.java PassSec/PassSec.java PassSec/Pass.java
+    ```
+
+2. Run the application:
+
+    ```bash
+    java Main
+    ```
+
+
+### Menu Options
+
+- **Option 1**: Test Password Strength
+
+  - Enter a password to evaluate its strength.
+  - Receive feedback and suggestions for improvement.
+  - Optionally, generate a new password if the current one is weak.
+- **Option 2**: Generate a New Password
+
+  - Automatically generates a strong password and displays it.
+
+---
+
+## Password Strength Criteria
+
+1. **Weak Passwords**:
+  - Fewer than 8 characters.
+  - Missing special characters or numbers.
+2. **Good Passwords**:
+  - Moderate length with some special characters and numbers.
+3. **Strong Passwords**:
+  - Longer length (12+ characters).
+  - Inclusion of multiple special characters and numbers.
+4. **Incredible Passwords**:
+  - 15+ characters with diverse character types.
+
+---
+
+## Example Interaction
+
 ```
-## Functions
+What do you wish to do?
+1 - Test password strength
+2 - Generate a new password
+Enter your choice: 1
 
-### passGen()
+What's your password? myPass123!
+Analyzing password strength...
+Your password is good. Do you want to generate a better one?
+1 - Yes
+2 - No
+Enter your choice: 1
+Your new password is: A1b2!3c4@D5e6F7g
 
-Generates a password for the user.
-
-    Requires: None
-    Ensures: Returns a string with the new password.
-
-### passStrength(passw)
-
-Provides the user with the strength level of their password.
-
-    Requires: passw - a string representing the user's password.
-    Ensures: Returns a string with the strength level.
-
-## Usage example:
-
-```python3
-# Import the ThreatForge Password Generator
-import password_generator
-
-# Generate a new password
-new_password = password_generator.passGen()
-print(f"Generated Password: {new_password}")
-
-# Assess the strength of a password
-password_strength = password_generator.passStrength(new_password)
-print(f"Password Strength: {password_strength}")
-
+Do you want to:
+1 - Leave
+2 - Reevaluate or test another password
+Enter your choice: 2
 ```
 
-## Contributors
+---
 
-- [Guilherme Soares](https://github.com/Guimbreon) 
+## Development Notes
+
+- The project uses modular Java design with clear separation of concerns.
+- Password generation ensures randomness and unpredictability.
+- Extendable architecture allows for future enhancements, such as:
+  - Storing user passwords securely.
+  - Adding GUI components.
+
+---
+
 ## License
-This ThreatForge Password Tool is licensed under the MIT. See the [LICENSE](LICENSE) file for details.
+
+PassSec is released under the MIT License.
+
+---
